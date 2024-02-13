@@ -1,6 +1,6 @@
 **Project Title: Social Network Graph**
 
-Project Description:
+**Project Description:**
 In this project, you will build a social network graph using graph data structures. You will
 create a program that allows users to add new members to the network and define
 relationships between members. The program should be able to answer questions about the
@@ -48,4 +48,53 @@ print(alice_friends) # Output: ["Bob"]
 
 shortest_path = network.shortest_path("Alice", "David")
 print(shortest_path) # Output: 3
-Project Title:
+
+
+**Project Title: Network Connectivity**
+
+**Project Description:**
+You must implement a graph representing a list of connections between computers in a
+network, represented as lists [a, …, n] where a to n are the IDs of two or more connected
+computers. Your task is to determine if the entire network is connected.
+
+**Project Requirements:**
+- Write a Graph class that allows you to add and remove a graph vertex (each vertex represents
+a computer in the network) and define the edges between vertices (an edge represents the
+connection between computers).
+- Write a function is_network_connected that returns a bool value. The function
+parameter can be the graph containing the vertices representing the computers in the
+network. It returns a boolean value indicating if the entire network is connected, i.e., it
+returns True if each computer has at least one connection.
+- Hint: You can use graph traversal algorithms (e.g., depth-first search or breadth-first search)
+to explore the connected components of the network. If you can traverse all vertices in the
+graph, that means all computers are connected.
+
+Example Usage:
+
+**Create a network graph**
+
+network = Graph()
+
+**Add vertices and connect them**
+
+network.add_vertex("A")
+network.add_vertex("B")
+network.add_edge("A", "B")
+
+**Verify is all computers are connected**
+
+is_network_connected(network)
+Output: True
+
+**Add more computers to the network and connect them**
+
+network.add_vertex("C")
+network.add_vertex("C")
+network.add_edge("C", "D")
+
+**Verify is all computers are connected**
+
+is_network_connected(network)
+Output: False
+
+
