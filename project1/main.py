@@ -29,25 +29,25 @@ class Graph:
                 return member.friends
         return None
       
-    def shortest_path(graph, friend1, friend2):
-        if friend1 not in graph or friend2 not in graph:
-            return None  # Handle invalid friend1 or friend2 node
+    def shortest_path(self, friend1, friend2):
+        if friend1 not in self.members or friend2 not in self.members:
+            return None  # Handle invalid friend1 or friend2
 
         visited = set()
-        queue = [(friend1, [friend1])]
+        queue = [(friend1, 0)]  # Queue to store nodes to be explored, containing the start node and its distance
 
         while queue:
-            current_node, path = queue.pop(0)
+            current_friend, distance = queue.pop(0) # Remove item in queue -> set the value for current_friend & distance
 
-            if current_node == friend2:
-                return path  # Found the shortest path
+            if current_friend == friend2: # End friend is reached -> return the shortest distance
+                return distance  
 
-            if current_node not in visited:
-                visited.add(current_node)
+            if current_friend not in visited: # Friend not visited -> add to visited set & calculate distance
+                visited.add(current_friend)
 
-                for neighbor in graph[current_node]:
-                    if neighbor not in visited:
-                        queue.append((neighbor, path + [neighbor]))
+                for friend in self.relationships[current_friend]:
+                    if friend not in visited:
+                        queue.append((friend, distance + 1))
 
         return None  # No path found
 
