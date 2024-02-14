@@ -5,6 +5,11 @@ class Node:
         self.location = location
         self.friends = []
 
+
+class Graph:
+    def __init__(self):
+        self.members = {}
+
     def add_friend(self, friend):
         if friend not in self.friends:
             self.friends.append(friend)
@@ -18,10 +23,6 @@ class Node:
             return self.members[name].friends
         else:
             return []
-
-class Graph:
-    def __init__(self):
-        self.members = {}
 
 
 
