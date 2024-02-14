@@ -1,3 +1,4 @@
+# Each node is a user
 class Node:
     def __init__(self, name, age=None, location=None):
         self.name = name
@@ -8,22 +9,22 @@ class Node:
     def __str__(self):
         return self.name
 
+# This class represents a network
 class Graph:
     def __init__(self):
+        # all members of the network as objects (nodes)
         self.members = []
 
     def __str__(self):
+        # Returns all members of the network
         result = [str(x) for x in self.members]
         return '\n'.join(result)
 
+    # Create new node (user) and append it to the members
     def add_member(self, name, age, location):
-        if name not in self.members:
-            member = Node(name, age, location)
-            self.members.append(member)
-            return True
-        else:
-            print(f"{name} is already here!")
-            return False
+        member = Node(name, age, location)
+        self.members.append(member)
+        return True
 
     def find_friends(self, name):
         for member in self.members:
