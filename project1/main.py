@@ -15,7 +15,7 @@ class Graph:
             self.members.append(member)
             return True
         else:
-            print(f"{member} is already here!}")
+            print(f"{member} is already here!")
             return False
 
     def find_friends(self, name):
