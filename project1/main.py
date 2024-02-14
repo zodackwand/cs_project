@@ -10,7 +10,7 @@ class Graph:
     def __init__(self):
         self.members = {}
 
-    def add_friend(self, friend):
+    def add_member(self, friend):
         if friend not in self.friends:
             self.friends.append(friend)
             return True
