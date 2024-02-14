@@ -10,12 +10,12 @@ class Graph:
     def __init__(self):
         self.members = {}
 
-    def add_member(self, friend):
-        if friend not in self.friends:
-            self.friends.append(friend)
+    def add_member(self, member):
+        if member not in self.members:
+            self.members.append(member)
             return True
         else:
-            print(f"{self.name} is already friends with {friend.name}")
+            print(f"{member} is already here!}")
             return False
 
     def find_friends(self, name):
