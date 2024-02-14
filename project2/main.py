@@ -4,7 +4,9 @@
 # This class represents a network
 class Graph:
     def __init__(self):
-        # all computers of the network as objects (nodes) in a dict
+        # all computers's IDs in a list
+        self.list = []
+        # all computers with connections in a dict
         self.vertices = {}
 
     def add_vertex(self, vertex):
@@ -25,7 +27,31 @@ class Graph:
             return True
 
     def adjacency_matrix(self):
-        return None
+        # I need to add comments
+        num_vertices = len(self.vertices)
+        matrix = [[0] * num_vertices for _ in range(num_vertices)]  # Initialize the matrix with zeros
+
+        # Fill the matrix based on the connections between vertices
+        for i, vertex1 in enumerate(self.vertices):
+            for j, vertex2 in enumerate(self.vertices):
+                if vertex2 in self.vertices[vertex1]:
+                    matrix[i][j] = 1
+
+        # Prepare row and column labels
+        labels = list(self.vertices.keys())
+        label_width = max(len(label) for label in labels)  # Calculate width for alignment
+
+        # Generate the formatted matrix with upper layer of IDs
+        formatted_matrix = ' ' * (label_width) * 2  # Add space for upper left corner
+        for label in labels:
+            formatted_matrix += f'{label:>{label_width}} '  # Add column labels
+        formatted_matrix += '\n'
+
+        for i, label in enumerate(labels):
+            formatted_matrix += f'{label:>{label_width}} '  # Add row label
+            formatted_matrix += ' '.join(str(x) for x in matrix[i]) + '\n'  # Add row elements
+
+        return formatted_matrix
 
 def is_network_connected(network):
     return None
