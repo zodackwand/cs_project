@@ -18,6 +18,10 @@ class Node:
             return self.members[name].friends
         else:
             return []
+        
+    def find_shortest_path(self, friend1, friend2):
+        
+        
 
 class Graph:
     def __init__(self):
