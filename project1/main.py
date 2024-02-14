@@ -5,12 +5,17 @@ class Node:
         self.location = location
         self.friends = []
 
-    def add_friend(self, friend):
-        if friend not in self.friends:
-            self.friends.append(friend)
+
+class Graph:
+    def __init__(self):
+        self.members = {}
+
+    def add_member(self, member):
+        if member not in self.members:
+            self.members.append(member)
             return True
         else:
-            print(f"{self.name} is already friends with {friend.name}")
+            print(f"{member} is already here!")
             return False
 
     def find_friends(self, name):
@@ -19,13 +24,32 @@ class Node:
         else:
             return []
         
-    def find_shortest_path(self, friend1, friend2):
-        
-        
+    def shortest_path(graph, friend1, friend2):
+        if friend1 not in graph or friend2 not in graph:
+            return None  # Handle invalid friend1 or friend2 node
 
-class Graph:
-    def __init__(self):
-        self.members = {}
+        visited = set()
+        queue = [(friend1, [friend1])]
+
+        while queue:
+            current_node, path = queue.pop(0)
+
+            if current_node == friend2:
+                return path  # Found the shortest path
+
+            if current_node not in visited:
+                visited.add(current_node)
+
+                for neighbor in graph[current_node]:
+                    if neighbor not in visited:
+                        queue.append((neighbor, path + [neighbor]))
+
+        return None  # No path found
+
+
+
+        
+        
 
 
 
