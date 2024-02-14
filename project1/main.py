@@ -1,3 +1,4 @@
+# Each node is a user
 class Node:
     def __init__(self, name, age=None, location=None):
         self.name = name
@@ -5,25 +6,29 @@ class Node:
         self.location = location
         self.friends = []
 
-
+# This class represents a network
 class Graph:
     def __init__(self):
-        self.members = {}
+        # all members of the network as objects (nodes)
+        self.members = []
 
-    def add_member(self, member):
-        if member not in self.members:
-            self.members.append(member)
-            return True
-        else:
-            print(f"{member} is already here!")
-            return False
+    def __str__(self):
+        # Returns all members of the network
+        result = [str(x) for x in self.members]
+        return '\n'.join(result)
+
+    # Create new node (user) and append it to the members
+    def add_member(self, name, age, location):
+        member = Node(name, age, location)
+        self.members.append(member)
+        return True
 
     def find_friends(self, name):
-        if name in self.members:
-            return self.members[name].friends
-        else:
-            return []
-        
+        for member in self.members:
+            if member.name == name:
+                return member.friends
+        return None
+      
     def shortest_path(graph, friend1, friend2):
         if friend1 not in graph or friend2 not in graph:
             return None  # Handle invalid friend1 or friend2 node
@@ -45,11 +50,4 @@ class Graph:
                         queue.append((neighbor, path + [neighbor]))
 
         return None  # No path found
-
-
-
-        
-        
-
-
 
