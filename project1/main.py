@@ -5,24 +5,29 @@ class Node:
         self.location = location
         self.friends = []
 
+    def __str__(self):
+        return self.name
 
 class Graph:
     def __init__(self):
-        self.members = {}
+        self.members = []
 
-    def add_member(self, member):
-        if member not in self.members:
+    def __str__(self):
+        result = [str(x) for x in self.members]
+        return '\n'.join(result)
+
+    def add_member(self, name, age, location):
+        if name not in self.members:
+            member = Node(name, age, location)
             self.members.append(member)
             return True
         else:
-            print(f"{member} is already here!")
+            print(f"{name} is already here!")
             return False
 
     def find_friends(self, name):
-        if name in self.members:
-            return self.members[name].friends
-        else:
-            return []
-
-
+        for member in self.members:
+            if member.name == name:
+                return member.friends
+        return None
 
