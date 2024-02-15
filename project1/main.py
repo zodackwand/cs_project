@@ -51,3 +51,22 @@ class Graph:
 
         return None  # No path found
 
+    def add_relationship(self, memberN1: str, memberN2: str):
+        #Check if the names exist in the list of members
+        for member in self.members:
+            if member.name == memberN1:
+                member1 = member
+                break
+        else:
+            print(f"[memberN1] not found")
+
+        for member in self.members:
+            if member.name == memberN2:
+                member2 = member
+                break
+        else:
+            print(f"[memberN2] not found")
+
+        #Adding each member to each other's lists to create 'relationship'
+        member1.friends.append(member2)
+        member2.friends.append(member1)
