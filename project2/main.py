@@ -55,15 +55,3 @@ class Graph:
 
 def is_network_connected(network):
     return None
-
-network = Graph()
-
-network.add_vertex('A')
-network.add_vertex('B')
-network.add_vertex('C')
-network.add_vertex('D')
-
-network.add_edge('A', 'B')
-network.add_edge('B', 'C')
-
-print(network.adjacency_matrix())
