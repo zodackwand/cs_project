@@ -27,9 +27,11 @@ class Graph:
             return True
 
     def adjacency_matrix(self):
-        # I need to add comments
+        # Get the number of vertices
         num_vertices = len(self.vertices)
-        matrix = [[0] * num_vertices for _ in range(num_vertices)]  # Initialize the matrix with zeros
+
+        # Initialize the matrix with zeros
+        matrix = [[0] * num_vertices for _ in range(num_vertices)]
 
         # Fill the matrix based on the connections between vertices
         for i, vertex1 in enumerate(self.vertices):
@@ -39,19 +41,29 @@ class Graph:
 
         # Prepare row and column labels
         labels = list(self.vertices.keys())
-        label_width = max(len(label) for label in labels)  # Calculate width for alignment
+        label_width = max(len(label) for label in labels)
 
-        # Generate the formatted matrix with upper layer of IDs
-        formatted_matrix = ' ' * (label_width) * 2  # Add space for upper left corner
-        for label in labels:
-            formatted_matrix += f'{label:>{label_width}} '  # Add column labels
-        formatted_matrix += '\n'
+        # Generate the upper layer
+        formatted_matrix = (' ' * (label_width) * 2) + ' '.join(f'{label}' for label in labels) + '\n'
 
+        # Generate the matrix rows with row labels and elements
         for i, label in enumerate(labels):
-            formatted_matrix += f'{label:>{label_width}} '  # Add row label
-            formatted_matrix += ' '.join(str(x) for x in matrix[i]) + '\n'  # Add row elements
+            formatted_matrix += f'{label} ' + ' '.join(str(x) for x in matrix[i]) + '\n'
 
         return formatted_matrix
 
+
 def is_network_connected(network):
     return None
+
+network = Graph()
+
+network.add_vertex('A')
+network.add_vertex('B')
+network.add_vertex('C')
+network.add_vertex('D')
+
+network.add_edge('A', 'B')
+network.add_edge('B', 'C')
+
+print(network.adjacency_matrix())
