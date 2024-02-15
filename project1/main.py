@@ -1,3 +1,7 @@
+# Add annotations
+# Function descriptions
+# Test this
+
 # Each node is a user
 class Node:
     def __init__(self, name, age=None, location=None):
