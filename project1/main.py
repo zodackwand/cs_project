@@ -4,7 +4,7 @@
 
 # Each node is a user
 class Node:
-    def __init__(self, name, age=None, location=None):
+    def __init__(self, name: str, age: int = None, location: str = None):
         self.name = name
         self.age = age
         self.location = location
@@ -22,18 +22,17 @@ class Graph:
         return '\n'.join(result)
 
     # Create new node (user) and append it to the members
-    def add_member(self, name, age, location):
+    def add_member(self, name: str, age: int, location: str) -> bool:
         member = Node(name, age, location)
         self.members.append(member)
         return True
 
-    def find_friends(self, name):
+    def find_friends(self, name: str):
         for member in self.members:
             if member.name == name:
                 return member.friends
-        return None
       
-    def shortest_path(self, friend1, friend2):
+    def shortest_path(self, friend1: str, friend2: str) -> int:
         if friend1 not in self.members or friend2 not in self.members:
             return None  # Handle invalid friend1 or friend2
 
@@ -55,21 +54,21 @@ class Graph:
 
         return None  # No path found
 
-    def add_relationship(self, memberN1: str, memberN2: str):
+    def add_relationship(self, member_name1: str, member_name2: str):
         #Check if the names exist in the list of members
         for member in self.members:
-            if member.name == memberN1:
+            if member.name == member_name1:
                 member1 = member
                 break
         else:
-            print(f"[memberN1] not found")
+            print(f"{member_name1} not found")
 
         for member in self.members:
-            if member.name == memberN2:
+            if member.name == member_name2:
                 member2 = member
                 break
         else:
-            print(f"[memberN2] not found")
+            print(f"{member_name2} not found")
 
         #Adding each member to each other's lists to create 'relationship'
         member1.friends.append(member2)
