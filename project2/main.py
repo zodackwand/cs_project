@@ -19,8 +19,9 @@ class Graph:
     def remove_vertex(self, vertex: str) -> None:
         # Delete vertex from ID list
         self.list.remove(vertex)
+        self.vertices.pop(vertex)
         # Delete all connections with vertex
-        for id in self.verices:
+        for id in self.vertices:
             if vertex in self.vertices[id]:
                 self.vertices[id].remove(vertex)
         
