@@ -1,7 +1,4 @@
-# We can avoid creating a separate class (Node) for computers as was in the previous project,
-# because we don't have a list of characteristics for each computer - only its ID.
-
-# This class represents a network
+# The class represents a network
 class Graph:
     def __init__(self):
         # all computers's IDs in a list
@@ -12,14 +9,14 @@ class Graph:
     def __str__(self):
         return f"{self.vertices}"
 
-    def add_vertex(self, vertex):
+    def add_vertex(self, vertex: str) -> bool: 
         if vertex not in self.vertices:
             self.list.append(vertex)
             # Create new dict elements with key: vertex and items: set of its connections
             self.vertices[vertex] = set()
             return True
 
-    def remove_vertex(self, vertex):
+    def remove_vertex(self, vertex: str) -> None:
         # Delete vertex from ID list
         self.list.remove(vertex)
         # Delete all connections with vertex
@@ -95,12 +92,25 @@ class Graph:
                 
         return True
         
-
-
 def is_network_connected(network):
-    return None
+    if not network.vertices:
+        return False  # Empty network is not considered connected
 
-# Sample raw network: A - B - C - D
+    visited = set()
+
+    # Depth-First Search
+    stack = [list(network.vertices.keys())[0]]
+    while stack:
+        node = stack.pop()
+        visited.add(node)
+        for neighbor in network.vertices[node]:
+            if neighbor not in visited:
+                stack.extend([neighbor])
+
+    # Check if all vertices are visited -> Return True
+    return set(network.vertices.keys()) == visited
+
+# Sample 4-vertice network: A - B - C - D
 network = Graph()
 
 network.add_vertex('A')
@@ -114,12 +124,12 @@ network.add_edge('C', 'D')
 # Modified by the ring method, each node has two neighbour connections and forms a ring
 network.generate_ring_connection()
 print(f"\nSample ring connection: {network}")
+print(f"\n{network.adjacency_matrix()}")
+
 
 # Modified by the star method, each node is linked to a central node specified by a user
 network.generate_star_connection('A')
 print(f"\nSample star connection: {network}")
-
-
-
+print(f"\n{network.adjacency_matrix()}")
 
 
