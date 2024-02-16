@@ -86,9 +86,9 @@ class Graph:
             return None
         
         for id in self.list:
-            # Link every vertice to the central node
+            # Link every vertice to the central node (excluding itself)
             if id == central_node in self.vertices:
-                self.vertices[id] = set(self.list)
+                self.vertices[id] = set(self.list).difference(central_node)
             # Link specific vertice to the central node
             else:
                 self.vertices[id] = {central_node}
